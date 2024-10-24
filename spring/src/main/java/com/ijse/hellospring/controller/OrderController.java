@@ -35,7 +35,6 @@ public class OrderController {
         return orderService.createOrder(order);
     }
 
-
     @PostMapping("/orders/{id}/addProduct")
     public Order addProductToOrder(@PathVariable Long id, @RequestBody OrderProductDto orderProductDto) {
         return orderService.addProductToOrder(id, orderProductDto.getProductId(), orderProductDto.getQuantity());
