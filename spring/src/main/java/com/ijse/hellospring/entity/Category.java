@@ -11,10 +11,13 @@ import java.util.List;
 @Setter
 @Entity
 public class  Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<Product> products;

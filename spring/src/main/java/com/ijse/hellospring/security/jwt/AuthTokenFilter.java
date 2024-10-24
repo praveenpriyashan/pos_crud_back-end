@@ -44,13 +44,13 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            String jwtToken = parseJwtFromHeader(request);         //meken krnne req eken token eka vena krla  ganna eka.
-            if (jwtToken != null && jwtUtils.validateJwtToken(jwtToken)) {        // meken krnne eq eken gttu token eka validate da kiyla blna eka.
-                String username = jwtUtils.getUsernameFromJwtToken(jwtToken);        //tokene ekene usernmae eka ven krla gnnva.me serma kalin create krpu method.
-                UserDetails userDetails = userDetailService.loadUserByUsername(username);   //userva load krgnnva userDetails kiyna variable ekata
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());  //meken krnne user log unahama authentication object ekk hdgnnva userDetails use krla .
-                authentication.setDetails(new WebAuthenticationDetails(request));    //req ekata add krnva authnentication details tika.
-                SecurityContextHolder.getContext().setAuthentication(authentication);   //security context eka update krnva.ethkota systema eka dnnva me req eka  evnne authentication user kenek kiyla
+            String jwtToken = parseJwtFromHeader(request);
+            if (jwtToken != null && jwtUtils.validateJwtToken(jwtToken)) {
+                String username = jwtUtils.getUsernameFromJwtToken(jwtToken);
+                UserDetails userDetails = userDetailService.loadUserByUsername(username);
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                authentication.setDetails(new WebAuthenticationDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } catch (Exception e) {
             e.printStackTrace();

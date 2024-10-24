@@ -47,10 +47,9 @@ public class OrderServiceImpl implements OrderService {
         if (product == null) {
             return null;
         }
+
         order.getOrderProducts().add(product);
-
         order.setTotalPrice(order.getTotalPrice() + product.getPrice() * quantity);
-
         return orderRepository.save(order);
     }
 
@@ -66,7 +65,6 @@ public class OrderServiceImpl implements OrderService {
             return null;
         }
         order.getOrderProducts().remove(product);
-
         order.setTotalPrice(order.getTotalPrice() - product.getPrice());
         return orderRepository.save(order);
     }
